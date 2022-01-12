@@ -26,6 +26,7 @@ export class App extends Component {
     const todoContact = {
       id: this.nameInputId(),
       name: this.state.name,
+      number: this.state.number,
     };
 
     this.setState(({ contacts }) => {
@@ -67,8 +68,12 @@ export class App extends Component {
         </form>
         <h2>Contact</h2>
         <ul>
-          {this.state.contacts.map(({ name, id }) => {
-            return <li key={id}>{name}</li>;
+          {this.state.contacts.map(({ name, id, number }) => {
+            return (
+              <li key={id}>
+                {name}: {number}
+              </li>
+            );
           })}
         </ul>
       </div>
