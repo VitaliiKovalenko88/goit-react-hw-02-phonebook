@@ -36,6 +36,15 @@ export class App extends Component {
       number,
     };
 
+    const searchSameContact = this.state.contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase(),
+    );
+
+    if (searchSameContact) {
+      alert(`Ну шо не видно, что ${name} таки есть уже?????!!!`);
+      return;
+    }
+
     this.setState(({ contacts }) => {
       console.log({ contacts: [dataContact, ...contacts] });
       return { contacts: [dataContact, ...contacts] };
