@@ -46,10 +46,7 @@ export class App extends Component {
       return;
     }
 
-    this.setState(({ contacts }) => {
-      console.log({ contacts: [dataContact, ...contacts] });
-      return { contacts: [dataContact, ...contacts] };
-    });
+    this.setState(({ contacts }) => ({ contacts: [dataContact, ...contacts] }));
   };
 
   deleteContact = contactId => {
