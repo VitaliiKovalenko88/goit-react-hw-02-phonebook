@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { nanoid } from 'nanoid';
 import { Form } from '../Form/Form';
 import { Filter } from '../Filter/Filter';
 import { ContactList } from '../ContactList/ContactList';
+
+const Container = styled.div`
+  text-align: center;
+`;
 
 export class App extends Component {
   state = {
@@ -57,7 +62,7 @@ export class App extends Component {
     const { filter } = this.state;
     const visibleContacts = this.getVisibleContacts();
     return (
-      <div>
+      <Container>
         <h1>Phonebook</h1>
         <Form onSubmit={this.addContact} />
         <h2>Contacts</h2>
@@ -66,7 +71,7 @@ export class App extends Component {
           contacts={visibleContacts}
           onDeleteContact={this.deleteContact}
         />
-      </div>
+      </Container>
     );
   }
 }

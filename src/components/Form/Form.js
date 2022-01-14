@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { FormAddContact } from './Form.styled';
 
 const INITIAL_STATE = { name: '', number: '' };
 
@@ -25,7 +26,7 @@ export class Form extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmite}>
+      <FormAddContact onSubmit={this.handleSubmite}>
         <label>Name</label>
         <input
           type="text"
@@ -46,7 +47,7 @@ export class Form extends Component {
         />
 
         <button type="submit">Add contact</button>
-      </form>
+      </FormAddContact>
     );
   }
 }

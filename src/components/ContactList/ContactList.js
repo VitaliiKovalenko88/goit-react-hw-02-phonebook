@@ -1,6 +1,8 @@
+import { ContactsList } from './ContactLit.styled';
+
 export const ContactList = ({ contacts, onDeleteContact }) => {
   return (
-    <ul>
+    <ContactsList>
       {contacts.map(({ name, id, number }) => {
         return (
           <li key={id}>
@@ -18,6 +20,6 @@ export const ContactList = ({ contacts, onDeleteContact }) => {
           </li>
         );
       })}
-    </ul>
+    </ContactsList>
   );
 };
