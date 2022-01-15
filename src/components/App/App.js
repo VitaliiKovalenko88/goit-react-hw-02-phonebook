@@ -38,7 +38,9 @@ export class App extends Component {
     };
 
     const searchSameContact = this.state.contacts.find(
-      contact => contact.name.toLowerCase() === name.toLowerCase(),
+      contact =>
+        contact.name.toLowerCase() === name.toLowerCase() &&
+        contact.name.toLowerCase() === ':',
     );
 
     if (searchSameContact) {

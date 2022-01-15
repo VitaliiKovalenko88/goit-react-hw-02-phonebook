@@ -16,12 +16,12 @@ export class Form extends Component {
 
     const { name, number } = this.state;
     this.props.onSubmit(name, number);
-
+    e.currentTarget.reset();
     this.reset();
   };
 
   reset = () => {
-    this.setState({ name: '', number: '' });
+    this.setState({ ...INITIAL_STATE });
   };
 
   render() {
