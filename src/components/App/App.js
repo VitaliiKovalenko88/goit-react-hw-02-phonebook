@@ -30,7 +30,7 @@ export class App extends Component {
     );
   };
 
-  addContact = (name, number) => {
+  addContact = (name, number, value) => {
     const dataContact = {
       id: this.generateId(),
       name,
@@ -38,17 +38,17 @@ export class App extends Component {
     };
 
     const searchSameContact = this.state.contacts.find(
-      contact =>
-        contact.name.toLowerCase() === name.toLowerCase() &&
-        contact.name.toLowerCase() === ':',
+      contact => contact.name.toLowerCase() === value.toLowerCase(),
     );
 
     if (searchSameContact) {
       alert(`Ну шо не видно, что ${name} таки есть уже?????!!!`);
+      console.log(searchSameContact);
       return;
     }
 
     this.setState(({ contacts }) => ({ contacts: [dataContact, ...contacts] }));
+    console.log(this.state.contacts);
   };
 
   deleteContact = contactId => {

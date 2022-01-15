@@ -1,10 +1,14 @@
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { FormAddContact } from './Form.styled';
 
 const INITIAL_STATE = { name: '', number: '' };
 
 export class Form extends Component {
-  state = { ...INITIAL_STATE };
+  state = {
+    name: '',
+    number: '',
+  };
 
   handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -13,15 +17,17 @@ export class Form extends Component {
 
   handleSubmite = e => {
     e.preventDefault();
-
+    const { value } = e.target.elements.name;
     const { name, number } = this.state;
-    this.props.onSubmit(name, number);
-    e.currentTarget.reset();
+    this.props.onSubmit(name, number, value);
+    console.log();
+
     this.reset();
+    e.currentTarget.reset();
   };
 
   reset = () => {
-    this.setState({ ...INITIAL_STATE });
+    this.setState({ name: '', number: '' });
   };
 
   render() {
@@ -51,3 +57,7 @@ export class Form extends Component {
     );
   }
 }
+
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
