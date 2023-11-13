@@ -1,32 +1,29 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+import Form from './Comonents/Form/Form';
 
 export default class App extends Component {
   state = {
     contacts: [],
-    name: '',
   };
 
   generateId = () => nanoid();
 
-  handleSubmit = e => {
-    e.preventDefault();
-    const { value } = e.target.elements.name;
+  addContact = (name, value, number) => {
+    const dataContacts = {
+      id: this.generateId(),
+      name,
+      number,
+    };
 
-    this.setState(prevState => ({
-      contacts: [value, ...prevState.contacts],
-    }));
-    this.reset();
-    e.currentTarget.reset();
-  };
-
-  handleChange = e => {
-    const { value } = e.currentTarget;
-    this.setState({ name: value });
-  };
-
-  reset = () => {
-    this.setState({ name: '' });
+    this.setState(prevState => {
+      console.log({
+        contacts: [dataContacts, ...prevState.contacts],
+      });
+      return {
+        contacts: [dataContacts, ...prevState.contacts],
+      };
+    });
   };
 
   render() {
@@ -34,22 +31,17 @@ export default class App extends Component {
       <div>
         <section>
           <h2>PhoneBook</h2>
-          <form onSubmit={this.handleSubmit}>
-            <label>Name</label>
-            <input
-              type="text"
-              name="name"
-              onChange={this.handleChange}
-              required
-            />
-            <button type="submit">Add contact</button>
-          </form>
+          <Form onSubmit={this.addContact} />
         </section>
         <section>
           <h2>Contacts</h2>
           <ul>
             {this.state.contacts.map(contact => {
-              return <li key={this.generateId()}>{contact}</li>;
+              return (
+                <li key={contact.id}>
+                  {contact.name}: {contact.number}
+                </li>
+              );
             })}
           </ul>
         </section>
