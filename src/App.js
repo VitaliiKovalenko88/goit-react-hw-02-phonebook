@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import Form from './Comonents/Form/Form';
+import ContactForm from './Components/ContactForm/ContactForm';
+import Filter from './Components/Filter/Filter';
+import ContactList from './Components/ContactList/ContactList';
 
 export default class App extends Component {
   state = {
@@ -47,28 +49,14 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <section>
-          <h2>PhoneBook</h2>
-          <Form onSubmit={this.addContact} />
-        </section>
-        <section>
-          <h2>Contacts</h2>
-          <p>Find contacts by name</p>
-          <input
-            type="text"
-            value={this.state.filter}
-            onChange={this.onChangeFilter}
-          />
-          <ul>
-            {this.getVisibleContacts().map(contact => {
-              return (
-                <li key={contact.id}>
-                  {contact.name}: {contact.number}
-                </li>
-              );
-            })}
-          </ul>
-        </section>
+        <h2>PhoneBook</h2>
+        <ContactForm onSubmit={this.addContact} />
+        <h2>Contacts</h2>
+        <Filter
+          value={this.state.filter}
+          onChangeFilter={this.onChangeFilter}
+        />
+        <ContactList contacts={this.getVisibleContacts()} />
       </div>
     );
   }
