@@ -55,6 +55,12 @@ export default class App extends Component {
     );
   };
 
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
+
   render() {
     return (
       <div>
@@ -65,7 +71,10 @@ export default class App extends Component {
           value={this.state.filter}
           onChangeFilter={this.onChangeFilter}
         />
-        <ContactList contacts={this.getVisibleContacts()} />
+        <ContactList
+          contacts={this.getVisibleContacts()}
+          onDeleteContact={this.deleteContact}
+        />
       </div>
     );
   }
