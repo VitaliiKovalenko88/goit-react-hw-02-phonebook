@@ -24,6 +24,15 @@ export default class App extends Component {
       number,
     };
 
+    const searchSameContact = this.state.contacts.find(contact => {
+      return contact.name.toLowerCase() === value.toLowerCase();
+    });
+
+    if (searchSameContact) {
+      alert(`"${name}" вже є в вашому списку`);
+      return;
+    }
+
     this.setState(prevState => {
       return {
         contacts: [dataContacts, ...prevState.contacts],
