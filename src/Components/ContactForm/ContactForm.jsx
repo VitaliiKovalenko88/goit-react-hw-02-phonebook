@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Form extends Component {
   state = {
@@ -20,7 +21,6 @@ export default class Form extends Component {
     this.props.onSubmit(name, value, number);
 
     this.reset();
-    e.currentTarget.reset();
   };
 
   reset = () => {
@@ -59,3 +59,7 @@ export default class Form extends Component {
     );
   }
 }
+
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
