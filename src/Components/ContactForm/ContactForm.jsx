@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import css from './ContactForm.module.css';
 
 export default class Form extends Component {
   state = {
@@ -15,10 +16,9 @@ export default class Form extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { value } = e.target.elements.name;
     const { name, number } = this.state;
 
-    this.props.onSubmit(name, value, number);
+    this.props.onSubmit(name, number);
 
     this.reset();
   };
@@ -30,10 +30,11 @@ export default class Form extends Component {
   render() {
     return (
       <>
-        <form onSubmit={this.handleSubmit}>
-          <label>
+        <form className={css.formContainer} onSubmit={this.handleSubmit}>
+          <label className={css.lbl}>
             Name
             <input
+              className={css.inp}
               type="text"
               name="name"
               value={this.state.name}
@@ -42,9 +43,10 @@ export default class Form extends Component {
             />
           </label>
 
-          <label>
+          <label className={css.lbl}>
             Number
             <input
+              className={css.inp}
               type="tel"
               name="number"
               value={this.state.number}
@@ -53,7 +55,9 @@ export default class Form extends Component {
             />
           </label>
 
-          <button type="submit">Add contact</button>
+          <button className={css.btn} type="submit">
+            Add contact
+          </button>
         </form>
       </>
     );

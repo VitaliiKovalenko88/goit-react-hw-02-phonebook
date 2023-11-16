@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import ContactForm from '../ContactForm/ContactForm';
 import Filter from '../Filter/Filter';
 import ContactList from '../ContactList/ContactList';
+import css from './App.module.css';
 
 export default class App extends Component {
   state = {
@@ -17,7 +18,7 @@ export default class App extends Component {
 
   generateId = () => nanoid();
 
-  addContact = (name, value, number) => {
+  addContact = (name, number) => {
     const dataContacts = {
       id: this.generateId(),
       name,
@@ -25,7 +26,7 @@ export default class App extends Component {
     };
 
     const searchSameContact = this.state.contacts.find(contact => {
-      return contact.name.toLowerCase() === value.toLowerCase();
+      return contact.name.toLowerCase() === name.toLowerCase();
     });
 
     if (searchSameContact) {
@@ -65,7 +66,7 @@ export default class App extends Component {
     const visibleContacts = this.getVisibleContacts();
 
     return (
-      <div>
+      <div className={css.container}>
         <h2>PhoneBook</h2>
         <ContactForm onSubmit={this.addContact} />
         <h2>Contacts</h2>
